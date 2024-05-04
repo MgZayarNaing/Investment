@@ -1,18 +1,13 @@
 {
-    "builds": [
-      {
+    "builds": [{
         "src": "Coin/wsgi.py",
         "use": "@vercel/python",
-        "config": {
-          "runtime": "python3.10"  
-        }
-      }
-    ],
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    }],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "Coin/wsgi.py"
-      }
+        {
+            "src": "/(.*)",
+            "dest": "Coin/wsgi.py"
+        }
     ]
-  }
-  
+}
