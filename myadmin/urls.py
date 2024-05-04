@@ -19,4 +19,7 @@ from django.urls import path
 from myadmin import views
 urlpatterns = [
     path('dashboard/',views.AdminDashboard),
+    path('users/',views.AdminUsers),
+    path('search/<str:stext>/',views.AdminSearch),
+    path('detail/<str:uid>/',views.AdminUserdetail),
 ]

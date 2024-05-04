@@ -1,0 +1,106 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+<style>
+    label{
+        text-align: center;
+    }
+</style>
+
+<div class="container scale-up-center">  
+    <h1 class="float-right"> User Details </h1> 
+    <br/>
+    <center>
+			<div >
+                {% if user.profile|length == 0 %}
+                        <img src="{% static 'profile-icon.png' %}" style="width:200px;height:200px;border:5px solid gray;" class="rounded-circle" />
+                        {% else %}
+                        <img src="../../media/{{user.profile}}" style="width:200px;height:200px;border:5px solid gray;" class="rounded-circle" />
+                         {% endif %}
+			</div>
+        </center>
+        <br/>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Name </label>
+                    <div class="col-md-9">
+                        <input type='text' name='name' value='{{user.name}}' class="form-control" readonly/> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Phone </label>
+                    <div class="col-md-9">
+                        <input type='text' name='age' value='{{user.phone}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Role </label>
+                    <div class="col-md-9">
+                        <input type='text' name='birthday' value='{{user.role}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Address </label>
+                    <div class="col-md-9">
+                        <input type='text' name='birthday' value='{{user.address}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Email </label>
+                    <div class="col-md-9">
+                        <input type='text' name='email' value='{{user.email}}' class="form-control" readonly/> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Date Joined </label>
+                    <div class="col-md-9">
+                        <input type='text' name='gender' value='{{user.date_joined}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+				<div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Last Login </label>
+                    <div class="col-md-9">
+                        <input type='text' name='job' value='{{user.last_login | naturaltime}}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> ID </label>
+                    <div class="col-md-9">
+                        <input type='text' name='job' value='{{user.id}}' class="form-control" readonly/>
+                     </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}
