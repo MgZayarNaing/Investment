@@ -1,1 +1,0 @@
-pip install django==4.2
