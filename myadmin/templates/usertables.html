@@ -1,6 +1,7 @@
 {% extends 'admin_base.html' %}
 {% block content %}
 {% load humanize %}
+{% load static %}
 
 <style>
     .pimg{
@@ -156,9 +157,9 @@ thead th.active{
                       <td>{{u.id|truncatechars:6}}</td>
                       <td>
                         {% if u.profile|length == 0 %}
-                        <img src="../../static/profile-icon.png" class="pimg" />
+                        <img src="{% static 'profile-icon.png' %}" class="pimg" />
                         {% else %}
-                        <img src="../../media/{{u.profile}}" class="pimg" />
+                        <img src="/media/{{u.profile}}" class="pimg" />
                          {% endif %}
                       </td>
                       <td>{{u.name}}</td>

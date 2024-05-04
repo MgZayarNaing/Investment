@@ -1,0 +1,349 @@
+{% extends 'customer_base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- home section starts  -->
+<section style="margin-top: 7rem;">
+    {% for h in herosection %}
+    <div class="home-container">
+        <div class="home-img">
+            <img src="/media/{{h.image}}">
+        </div>
+        <div class="home-text">
+            <h1>{{h.title}}</h1>
+            <ul>
+                <li>
+                    <p>{{h.description}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+<!-- home section ends  -->
+
+<!-- card section starts -->
+
+<section class="card" style="margin-bottom: 3rem;">
+    <div class="card-container">
+        <div class="card-box">
+            <img src="{% static 'images/coincard1.png' %}">
+            <span>Create account</span>
+            <p>Click the button below and follow our easy account setup process</p>
+        </div>
+        <div class="card-box">
+            <img src="coincard2.png">
+            <span>Make a deposit</span>
+            <p>Get Ready to take advamtage of the next trading opportunity</p>
+        </div>
+        <div class="card-box">
+            <img src="coincard3.png">
+            <span>Start now</span>
+            <p>Launch the platform now to get started</p>
+        </div>
+    </div>
+    <center><a href="#">open an account</a></center>
+</section>
+
+<!-- card section ends -->
+
+<!-- block section starts -->
+
+<section class="block" style="color:#ffffff">
+
+    <h1 class="heading">Why Block Chain?</h1>
+    <p class="heading-text">We’ve worked with over 400 companies to build blockchain solutions for their business,
+        and we are still growing.</p>
+
+    <div class="block-container">
+        <div class="block-section-1">
+            <span>Flexibility</span>
+            <p>We’ve worked with over 400 companies to build blockchain solutions for their business.</p>
+            <ul>
+                <li>Blockchain solutions for their business.</li>
+                <li>Crypto space with its remarkable journey</li>
+                <li>Stay tuned to blockchain news</li>
+            </ul>
+            <img src="forcoin.png">
+        </div>
+        <div class="block-section-2">
+            <div class="block-box">
+                <div class="detail">
+                    <span>Transference</span>
+                    <p>We’ve worked with over 400 companies to build blockchain solutions for their business.</p>
+                    <p>We’ve worked with over 400 companies to build</p>
+                </div>
+                <img src="forcoin2.png">
+            </div>
+            <div class="block-box">
+                <div class="detail">
+                    <span>Secure & Safe</span>
+                    <p>We’ve worked with over 400 companies to build blockchain solutions for their business.</p>
+                    <p>We’ve worked with over 400 companies to build</p>
+                </div>
+                <img src="forcoin1.png">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- block section ends -->
+
+<!-- ranking section starts -->
+
+<section class="ranking">
+    <center><span class="heading">Leaderboard</span></center>
+    <h1 class="title">CoinGain Top Ranking</h1>
+    <div class="ranking-container">
+        <div class="ranking-section-1">
+
+            <div class="ranking-box">
+                <div class="border">
+                    <div class="crown first-crown">
+                        <img src="firstcrown.svg">
+                    </div>
+                </div>
+                <div class="color-circle first-circle"></div>
+                <div class="data">
+                    <h6 style="color:#FCD73A;">First 1</h6>
+                    <h5>Peter Jay Smith</h5>
+                    <h5>Was</h5>
+                    <span>19.280G</span>
+                </div>
+                <h4>9.800</h4>
+                <div class="gem">
+                    <span>prize</span>
+                    <img src="gem.svg">
+                </div>
+            </div>
+
+            <div class="ranking-box">
+                <div class="border">
+                    <div class="crown second-crown">
+                        <img src="secondcrown.svg">
+                    </div>
+                </div>
+                <div class="color-circle second-circle"></div>
+                <div class="data">
+                    <h6 style="color:#60EBB3;">Second 2</h6>
+                    <h5>Peter Jay Smith</h5>
+                    <h5>Was</h5>
+                    <span>19.280G</span>
+                </div>
+                <h4>9.800</h4>
+                <div class="gem">
+                    <span>prize</span>
+                    <img src="gem.svg">
+                </div>
+            </div>
+
+            <div class="ranking-box">
+                <div class="border">
+                    <div class="crown third-crown">
+                        <img src="thirdcrown.svg">
+                    </div>
+                </div>
+                <div class="color-circle third-circle"></div>
+                <div class="data">
+                    <h6 style="color:#FE9431;">Third 3</h6>
+                    <h5>Peter Jay Smith</h5>
+                    <h5>Was</h5>
+                    <span>19.280G</span>
+                </div>
+                <h4>9.800</h4>
+                <div class="gem">
+                    <span>prize</span>
+                    <img src="gem.svg">
+                </div>
+            </div>
+
+        </div>
+        <div class="ranking-section-2">
+            <table>
+                <tr>
+                    <th>Place</th>
+                    <th>User</th>
+                    <th>
+                        <div class="gem">
+                            <span>Credit</span>
+                            <img src="gem.svg">
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>04</td>
+                    <td>
+                        <div class="circle">
+                            <div class="color-circle" style="background: #fe9431;"></div>
+                            <span>Yeremias NJ</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="gem">
+                            <span>13.200</span>
+                            <img src="gem.svg">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>05</td>
+                    <td>
+                        <div class="circle">
+                            <div class="color-circle"
+                                style="background: linear-gradient(180deg, #f5e06b, #f7ae09);"></div>
+                            <span>John Pentol</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="gem">
+                            <span>13.200</span>
+                            <img src="gem.svg">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>06</td>
+                    <td>
+                        <div class="circle">
+                            <div class="color-circle" style="background: #fcd5b2;"></div>
+                            <span>Megda Hera</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="gem">
+                            <span>13.200</span>
+                            <img src="gem.svg">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>07</td>
+                    <td>
+                        <div class="circle">
+                            <div class="color-circle" style="background: #fff0d0;"></div>
+                            <span>Denielad Dan</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="gem">
+                            <span>13.200</span>
+                            <img src="gem.svg">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>08</td>
+                    <td>
+                        <div class="circle">
+                            <div class="color-circle"
+                                style="background: linear-gradient(180deg, #43bef2, #1e6cf7);"></div>
+                            <span>Henry</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="gem">
+                            <span>13.200</span>
+                            <img src="gem.svg">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>09</td>
+                    <td>
+                        <div class="circle">
+                            <div class="color-circle"
+                                style="background: linear-gradient(180deg, #f8f48e, #fde636);"></div>
+                            <span>Thomas C</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="gem">
+                            <span>13.200</span>
+                            <img src="gem.svg">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>
+                        <div class="circle">
+                            <div class="color-circle"
+                                style="background: linear-gradient(180deg, #46dea2, #7bf8c5);"></div>
+                            <span>Paijoo</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="gem">
+                            <span>13.200</span>
+                            <img src="gem.svg">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ranking section ends -->
+
+<!-- trading section starts -->
+
+<section class="trading" style="margin-bottom: 3rem;">
+    <p class="heading">What is meaning of futures trading?</p>
+    <div class="line"></div>
+    <p class="text">Future trading involves obligation which makes it mandatory for the buyer and seller to abide by
+        the agreement and complete the trade on a predetermined date and price. The predetermined time I futures
+        trading is called delivery date and the fixed price is called futures price. To become more familiar with
+        futures meaning you need to understand the following points –</p>
+    <div class="trading-container">
+
+        <div class="grid-sector">
+            <div class="trading-box">
+                <p>The value of future contracts is influenced by the value of the underlying asset. If the value of
+                    underlying assets rises it increases the value of future contracts too.</p>
+                <span class="cornor"></span>
+            </div>
+            <div class="trading-box">
+                <p>Future contracts can be transferred and can be traded. If the seller wants to move out of the
+                    contract the seller can transfer the ownership to some other party. This applies to the buyer as
+                    well</p>
+                <span class="cornor"></span>
+            </div>
+            <div class="trading-box">
+                <p>Future contracts involve obligation from both the parties hence these contracts must be properly
+                    regulated to avoid chances of default. In India, SEBI looks after the futures trading to ensure
+                    smooth functioning</p>
+                <span class="cornor"></span>
+            </div>
+        </div>
+
+        <div class="flex-sector">
+            <div class="trading-box">
+                <p>Future contracts follow a standardized procedure and cannot be customized by any individual and
+                    the conditions cannot be negotiated</p>
+                <span class="cornor"></span>
+            </div>
+            <div class="trading-box">
+                <p>The settlements in futures trading are done through cash. The differences in cash values are paid
+                    by one party to another</p>
+                <span class="cornor"></span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- trading section ends -->
+
+
+{% include 'chat/partials/chat_bubble.html' %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}

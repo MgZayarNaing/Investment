@@ -22,4 +22,8 @@ urlpatterns = [
     path('users/',views.AdminUsers),
     path('search/<str:stext>/',views.AdminSearch),
     path('detail/<str:uid>/',views.AdminUserdetail),
+    path('herosectionadd/',views.HeroSectionAdd),
+    path('herosection/',views.HeroSection),
+    path('herosectionupdate/<int:hs_id>/',views.HeroSectionUpdate),
+    path('herosectiondelete/<int:hs_id>/',views.HeroSectionDelete),
 ]

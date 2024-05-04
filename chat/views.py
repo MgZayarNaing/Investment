@@ -21,9 +21,6 @@ def create_room(request, uuid):
 
     return JsonResponse({'message': 'room created'})
 
-def HomePage(request):
-    return render(request,'chat/index.html')
-
 def admin(request):
     rooms = Room.objects.all()
     users = User.objects.filter(is_staff=True)

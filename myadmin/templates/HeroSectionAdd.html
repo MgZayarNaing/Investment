@@ -1,0 +1,13 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<form method="POST" action="/myadmin/herosectionadd/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="title" required>
+    <input type="file" name="image" required>
+    <textarea name="description"></textarea>
+    <button type="submit">Add</button>
+</form>
+
+{% endblock %}

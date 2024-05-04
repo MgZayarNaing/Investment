@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'account',
     'chat',
     'myadmin',
+    'customer',
     'django.contrib.humanize',
 ]
 

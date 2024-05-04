@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from account.models import *
 from django.db.models import Q
 from django.core.paginator import Paginator
+from myadmin.models import *
 # Create your views here.
 
 def AdminDashboard(request):
@@ -29,3 +30,41 @@ def AdminSearch(request,stext):
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request,"usertables.html",{"users":page_obj})
+
+def HeroSectionAdd(request):
+     if request.method == "GET":
+          return render(request,"HeroSectionAdd.html")
+     if request.method == "POST":
+          herosection = HeroSectionModel.objects.create(
+               title = request.POST.get('title'),
+               image = request.FILES.get('image'),
+               description = request.POST.get('description'),
+               time = datetime.now()
+          )
+          herosection.save()
+          return redirect('/myadmin/herosection/')
+     
+def HeroSection(request):
+    herosection = HeroSectionModel.objects.all().order_by('-time')[:1]
+    return render(request,"HeroSection.html",{"herosection":herosection})
+
+def HeroSectionUpdate(request,hs_id):
+     herosection = HeroSectionModel.objects.get(id = hs_id)
+     if request.method == "GET":
+          return render(request,"HeroSectionUpdate.html",{"herosection":herosection})
+     if request.method == "POST":
+          herosection.title = request.POST.get('title')
+          if request.FILES.get('image'):
+                herosection.image.delete()
+                herosection.image = request.FILES.get('image')
+          herosection.description = request.POST.get('description')
+          herosection.save()
+          return redirect('/myadmin/herosection/')
+     
+def HeroSectionDelete(request,hs_id):
+    herosection = HeroSectionModel.objects.get(id = hs_id)
+    if request.FILES.get('image'):
+        herosection.image.delete()
+    herosection.delete()
+    return redirect('/myadmin/herosection/')
+    

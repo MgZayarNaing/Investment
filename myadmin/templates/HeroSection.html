@@ -1,0 +1,23 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+{% for h in herosection %}
+    <div class="home-container">
+        <div class="home-img">
+            <img src="/media/{{h.image}}" width="300px" height="300px">
+        </div>
+        <div class="home-text">
+            <h1>{{h.title}}</h1>
+            <ul>
+                <li>
+                    <p>{{h.description}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a href="/myadmin/herosectionupdate/{{h.id}}/">Edit</a>
+    <a href="/myadmin/herosectiondelete/{{h.id}}/">Delete</a>
+    {% endfor %}
+
+{% endblock %}
