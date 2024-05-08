@@ -1,0 +1,86 @@
+{% extends 'customer_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- withdraw section starts -->
+
+<section class="withdraw">
+    <span class="title">Back to Shop</span>
+    <h1 class="heading">Withdraw to Crypto Currencies</h1>
+    <div class="withdraw-container">
+        <div class="section">
+            <div class="top-section">
+                <img src="images/bitcoin.svg">
+                <h5>Crypto Currencies</h5>
+            </div>
+            <div class="mid-section">
+                <h3>Description : </h3>
+                <p>Amazon is the world’s largest online retailer. Amazon Gift Cards are redeemable towards millions of items storewide on Amazon.</p>
+            </div>
+            <div class="bottom-section">
+                <div class="sector">
+                    <img src="images/plane.svg">
+                    <h5>Website</h5>
+                </div>
+                <div class="sector">
+                    <img src="images/help.svg">
+                    <h5>Help</h5>
+                </div>
+            </div>
+        </div>
+        <div class="detail">
+            <h4>Crypto Currencies</h4>
+            <div class="box">
+                <h3>Choose crypto currencies</h3>
+                <div class="button btn">
+                    <button>Bitcoin</button>
+                    <button>Litecoin</button>
+                    <button>Etherum</button>
+                    <button>Bitcoin Cash</button>
+                </div>
+            </div>
+            <div class="box">
+                <h3>Choose Network</h3>
+                <div class="button btn">
+                    <button>Bitcoin</button>
+                    <button>Litecoin</button>
+                    <button>Etherum</button>
+                    <button>Bitcoin Cash</button>
+                </div>
+            </div>
+            <div class="box">
+                <h3>Choose Amount</h3>
+                <div class="button amount-btn">
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                </div>
+                <input type="text" placeholder="Enter your amount">
+            </div>
+            <div class="box">
+                <h3>Set PayPal address</h3>
+                <input type="text" placeholder="Enter Paypal Address">
+            </div>
+            <div class="box2">
+                <p class="text1">USD account balance will be sent to your PayPal account. PayPal charges you a transaction fee of 2.9% + $0.30.</p>
+                <button>Withdraw</button>
+            </div>
+            <div class="box2 noti-box">
+                <p class="text2">Payment of 30,000G will be equivalent to $2.50 withdrawals</p>
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- withdraw section ends -->
+
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}

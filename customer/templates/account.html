@@ -1,0 +1,111 @@
+{% extends 'customer_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- account section starts -->
+
+<section class="account">
+
+    <div class="image">
+        <img src="{% static 'images/accountpage.jpg' %}">
+        <p>My Account</p>
+    </div>
+
+    <div class="account-container">
+        <div class="profile-box">
+            <div class="myprofile">
+                <div class="about">
+                    <span>My Profile : John Doe</span>
+                    <p>Last login: 24 Dec 2019, 4:00pm</p>
+                    <p>California, America (USA)</p>
+                </div>
+                <div class="profile">
+                    <img src="{% static 'images/dyrroth.jpg' %}">
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <td>tradecoindummy@support.com</td>
+                    <td>+91 4568591753</td>
+                </tr>
+                <tr>
+                    <td>Permanent Address</td>
+                    <td>California, America (USA)</td>
+                </tr>
+                <tr>
+                    <td>Temporary Address</td>
+                    <td>Mumbai, India</td>
+                </tr>
+                <tr>
+                    <td>User Code</td>
+                    <td>ZXcv852</td>
+                </tr>
+                <tr>
+                    <td>Accounts Type</td>
+                    <td>Invester</td>
+                </tr>
+                <tr>
+                    <td>Accounts No.</td>
+                    <td>7894xxxxxxxx123</td>
+                </tr>
+                <tr>
+                    <td><a href="#">Logout</a></td>
+                </tr>
+            </table>
+            
+        </div>
+        <div class="data-box">
+            <div class="detail-box">
+                <h3>Account Detail</h3>
+                <div class="sector">
+                    <div class="balance">
+                        <p>Account Balance</p>
+                        <p><strong>$4,56,966.00</strong></p>
+                    </div>
+                    <a href="#" style="padding:.5rem 1.4rem;">Add</a>
+                </div>
+                <div class="sector">
+                    <div class="balance">
+                        <p>Invest amount</p>
+                        <p><strong>$85,259.99</strong></p>
+                    </div>
+                    <a href="#" style="padding:.5rem 1rem;">Invest</a>
+                </div>  
+            </div>
+            <div class="detail-box">
+                <div class="top-box">
+                    <h3>Recent Status</h3>
+                    <form class="search-form">
+                        <input type="search" placeholder="search">
+                        <i class="fas fa-search"></i>
+                    </form>
+                </div> 
+                <div class="sector">
+                    <div class="balance">
+                        <p>Last withdrawl</p>
+                        <p><strong>$5,629.00</strong></p>
+                    </div>
+                    <span>Successful</span>
+                </div>
+                <div class="sector">
+                    <div class="balance">
+                        <p>Last invest</p>
+                        <p><strong>$2,951.00</strong></p>
+                    </div>
+                    <span>Successful</span>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<!-- account section ends -->
+
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}
