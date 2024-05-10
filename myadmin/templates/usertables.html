@@ -136,6 +136,54 @@ thead th.active{
                   </form>
             </div>
         </div>
+
+        <!-- withdraw -->
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name<span class="icon-arrow">&UpArrow;</span></th>
+                <th scope="col">Email<span class="icon-arrow">&UpArrow;</span></th>
+                <th scope="col">Quantity<span class="icon-arrow">&UpArrow;</span></th>
+                <th scope="col">Status<span class="icon-arrow">&UpArrow;</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for d in deposit %}
+              {% if d.status == False %}
+                <tr>
+                  <td>{{d.customer.name}}</td>
+                </tr>
+                <tr>
+                  <td>{{d.customer.email}}</td>
+                </tr>
+                <tr>
+                  <td>{{d.quantity}}</td>
+                </tr>
+                <tr>
+                  
+                  <td>
+                    <form method="POST" action ="/myadmin/approve_deposit/{{d.id}}/" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+                      {% if d.status == False %}
+                      <button type="submit">Approve</button>
+                      {% else %}
+                      <button type="button">Approved</button>
+                      {% endif %}
+                    </form>
+
+                  </td>
+                  
+                </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+
+        <!-- withdraw -->
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -173,6 +221,9 @@ thead th.active{
                   </tbody>
                 </table>
               </div>
+
+
+              
             </div>
           </div>
           {% if users.has_other_pages %}
@@ -217,6 +268,8 @@ thead th.active{
 
         </div>
       </div><!--End Row-->
+
+
 	  
 	  <!--start overlay-->
 		  <div class="overlay toggle-menu"></div>

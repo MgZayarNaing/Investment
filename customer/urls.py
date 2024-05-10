@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.urls import path
 from customer import views
+
+app_name = "customer"
+
 urlpatterns = [
+    path('get_qr_link/', views.GetQRLink),
     path('withdraw/',views.Withdraw),
     path('account/',views.Account),
+    path('deposit/',views.Deposit),
 ]

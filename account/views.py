@@ -8,6 +8,11 @@ from datetime import datetime
 
 # Create your views here.
 
+def generate_random_code():
+    from random import randrange 
+    random_code = randrange(1000000000, 9999999999) 
+    return random_code
+
 def LogIn(request):
     if request.method == "GET":
         return render(request, 'login.html')
@@ -46,6 +51,7 @@ def Register(request):
                 profile = request.FILES.get('profile')
                 address = request.POST.get('address')
                 user = User.objects.create_user(
+                    account_number = generate_random_code(),
                     name = name,
                     email = email,
                     phone = phone,

@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserM
 from django.db import models
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
-
+from customer.models import *
 
 class CustomUserManager(UserManager):
     def _create_user(self, name, email, password, **extra_fields):
@@ -32,19 +32,21 @@ class CustomUserManager(UserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     ADMIN = 'admin'
     MANAGER = 'manager'
-    USER = 'user'
+    INVESTER = 'invester'
 
     ROLES_CHOICES = (
         (ADMIN, 'Admin'),
         (MANAGER, 'Manager'),
-        (USER,'User'),
+        (INVESTER,'Invester'),
     )
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    account_number = models.BigIntegerField(default=None,null=True,blank=True)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255, blank=True, default='')
-    role = models.CharField(max_length=20, choices=ROLES_CHOICES, default=USER)
+    role = models.CharField(max_length=20, choices=ROLES_CHOICES, default=INVESTER)
     phone = PhoneNumberField(null=True,blank=True)
+
     profile = models.ImageField(default=None,null=True,blank=True)
     address = models.TextField(default=None,null=True,blank=True)
 

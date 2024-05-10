@@ -1,0 +1,132 @@
+{% extends 'customer_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- withdraw section starts -->
+
+<section class="withdraw">
+    <span class="title">Back to Shop</span>
+    <h1 class="heading">Withdraw to Crypto Currencies</h1>
+    <div class="withdraw-container">
+        <div class="section">
+            <div class="top-section">
+                <img src="images/bitcoin.svg">
+                <h5>Crypto Currencies</h5>
+            </div>
+            <!-- <div class="mid-section">
+                <h3>Description : </h3>
+                <p>Amazon is the world’s largest online retailer. Amazon Gift Cards are redeemable towards millions of
+                    items storewide on Amazon.</p>
+            </div> -->
+            <p><span>Link Name : </span><font id="link_name">{{q.link_name}}</font></p>
+                <p><span>Link Address : </span><font id="link_address">{{q.link_address}}</font><i class="fa fa-copy"></i></p>
+            <div id="image-container"></div>
+            <div class="bottom-section">
+                <div class="sector">
+                    <img src="images/plane.svg">
+                    <h5>Website</h5>
+                </div>
+                <div class="sector">
+                    <img src="images/help.svg">
+                    <h5>Help</h5>
+                </div>
+            </div>
+        </div>
+        <form method="POST" action="/customer/deposit/" class="detail">
+            {% csrf_token %}
+            <h4>Crypto Currencies</h4>
+            <div class="box">
+                <h3>Choose crypto currencies</h3>
+
+                <select name="coin_type" style="color:black;">
+                    <option style="color:black;">Choose crypto currencies</option>
+                    {% for c in coin_type %}
+                    <option style="color:black;" value="{{c.id}}">{{c.type}}</option>
+                    {% endfor %}
+                </select>
+                <!-- <div id="category-buttons" class="button btn">
+                    {% for c in cointype %}
+                    <button type="button" class="category-btn" data-category="{{ cointype.id }}">
+                        {{ c.type }}
+                    </button>
+                    {% endfor %}
+                    <input type="hidden" name="category" id="category-input" value="">
+                </div> -->
+            </div>
+            <!-- <script>
+                document.querySelectorAll('.category-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        document.getElementById('category-input').value = this.getAttribute('data-category');
+                        // Optionally, submit the form automatically when a category is selected
+                        // document.getElementById('your_form').submit();
+                    });
+                });
+            </script> -->
+            <div class="box">
+                <h3>Choose Network</h3>
+                <select name="network" style="color:black;" id="option-select">
+                    <option style="color:black;">Choose network</option>
+                    {% for n in network %}
+                    <option style="color:black;" value="{{n.id}}">{{n.type}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="box">
+                <h3>Choose Amount</h3>
+                <div class="button amount-btn">
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                    <button>$ 2.50</button>
+                </div>
+                <input type="text" name="quantity" placeholder="Enter your amount">
+            </div>
+            <div class="box">
+                <h3>Set PayPal address</h3>
+                <input type="file" name="screenshot">
+            </div>
+            
+            <div class="box2">
+                <p class="text1">USD account balance will be sent to your PayPal account. PayPal charges you a
+                    transaction fee of 2.9% + $0.30.</p>
+                <button type="submit">Withdraw</button>
+            </div>
+            <div class="box2 noti-box">
+                <p class="text2">Payment of 30,000G will be equivalent to $2.50 withdrawals</p>
+                <i class="fas fa-times"></i>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- withdraw section ends -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#option-select').change(function() {
+                var optionId = $(this).val();
+                $.ajax({
+                    url: '/customer/get_qr_link/',
+                    data: {
+                        'option_id': optionId
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#image-container').html('<img src="' + data.image_url + '">');
+                        $('#link_name').html(data.link_name);
+                        $('#link_address').html(data.link_address);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}

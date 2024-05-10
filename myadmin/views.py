@@ -12,10 +12,13 @@ def AdminDashboard(request):
 
 def AdminUsers(request):
     users = User.objects.all().order_by('-date_joined')
+    deposit = DepositModel.objects.all()
+    for u in users:
+        u.id = u.id.hex[:6]
     paginator = Paginator(users, 7)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request,"usertables.html",{"users":page_obj})
+    return render(request,"usertables.html",{"users":page_obj,"deposit":deposit})
 
 def AdminUserdetail(request,uid):
     user = User.objects.get(id=uid)
@@ -67,4 +70,31 @@ def HeroSectionDelete(request,hs_id):
         herosection.image.delete()
     herosection.delete()
     return redirect('/myadmin/herosection/')
-    
+
+def AdminApproveDeposit(request,d_id):
+    if request.method == "POST":
+        deposit = DepositModel.objects.get(id = d_id)
+        deposit.status = True
+
+        have_deposit = CoinModel.objects.filter(customer_id = deposit.customer.id)
+        if have_deposit:
+            coin = CoinModel.objects.get(customer_id = deposit.customer.id) 
+            coin.network_type_id = deposit.network_type
+            coin.coin_type_id = deposit.coin_type 
+            coin.quantity += deposit.quantity
+            coin.save()
+            deposit.save()
+            
+            
+            return redirect('/myadmin/herosection/')
+        else:
+            coin = CoinModel.objects.create(
+                customer_id = deposit.customer.id,
+                network_type_id = deposit.network_type_id,
+                coin_type_id = deposit.coin_type_id,
+                quantity = deposit.quantity,
+                time = datetime.now()
+            )
+            coin.save()
+            deposit.save()
+            return redirect('/myadmin/herosection/')

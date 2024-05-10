@@ -16,44 +16,40 @@
         <div class="profile-box">
             <div class="myprofile">
                 <div class="about">
-                    <span>My Profile : John Doe</span>
-                    <p>Last login: 24 Dec 2019, 4:00pm</p>
-                    <p>California, America (USA)</p>
+                    <span>My Profile : {{user.name}}</span>
+                    <p>Last login : {{user.last_login}}</p>
+                    <p>Account no. : {{user.account_number}}</p>
                 </div>
                 <div class="profile">
-                    <img src="{% static 'images/dyrroth.jpg' %}">
+                    <img src="{{user.profile.url}}">
                 </div>
             </div>
             <table>
                 <tr>
-                    <td>tradecoindummy@support.com</td>
-                    <td>+91 4568591753</td>
-                </tr>
-                <tr>
-                    <td>Permanent Address</td>
-                    <td>California, America (USA)</td>
-                </tr>
-                <tr>
-                    <td>Temporary Address</td>
-                    <td>Mumbai, India</td>
-                </tr>
-                <tr>
                     <td>User Code</td>
-                    <td>ZXcv852</td>
+                    <td>{{user.id}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone No.</td>
+                    <td>{{user.phone}}</td>
                 </tr>
                 <tr>
                     <td>Accounts Type</td>
-                    <td>Invester</td>
+                    <td style="text-transform: capitalize;">{{user.role}}</td>
                 </tr>
                 <tr>
-                    <td>Accounts No.</td>
-                    <td>7894xxxxxxxx123</td>
+                    <td>Address</td>
+                    <td>{{user.address}}</td>
                 </tr>
                 <tr>
-                    <td><a href="#">Logout</a></td>
+                    <td><a href="/account/logout/">Logout</a></td>
                 </tr>
             </table>
-            
+
         </div>
         <div class="data-box">
             <div class="detail-box">
@@ -61,7 +57,19 @@
                 <div class="sector">
                     <div class="balance">
                         <p>Account Balance</p>
-                        <p><strong>$4,56,966.00</strong></p>
+                        <p>
+                            <strong>
+                                {% if coin %}
+
+                                $ {{coin.quantity}} {{coin.coin_type}}
+
+                                {% else %}
+
+                                $ 0
+                                
+                                {% endif %}
+                            </strong>
+                        </p>
                     </div>
                     <a href="#" style="padding:.5rem 1.4rem;">Add</a>
                 </div>
@@ -71,7 +79,7 @@
                         <p><strong>$85,259.99</strong></p>
                     </div>
                     <a href="#" style="padding:.5rem 1rem;">Invest</a>
-                </div>  
+                </div>
             </div>
             <div class="detail-box">
                 <div class="top-box">
@@ -80,7 +88,7 @@
                         <input type="search" placeholder="search">
                         <i class="fas fa-search"></i>
                     </form>
-                </div> 
+                </div>
                 <div class="sector">
                     <div class="balance">
                         <p>Last withdrawl</p>
@@ -94,7 +102,7 @@
                         <p><strong>$2,951.00</strong></p>
                     </div>
                     <span>Successful</span>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
@@ -106,6 +114,6 @@
 
 
 
-    <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 {% endblock %}

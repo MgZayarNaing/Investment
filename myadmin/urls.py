@@ -26,4 +26,5 @@ urlpatterns = [
     path('herosection/',views.HeroSection),
     path('herosectionupdate/<int:hs_id>/',views.HeroSectionUpdate),
     path('herosectiondelete/<int:hs_id>/',views.HeroSectionDelete),
+    path('approve_deposit/<int:d_id>/',views.AdminApproveDeposit),
 ]
