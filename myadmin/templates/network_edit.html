@@ -1,0 +1,45 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+{% load static %}
+
+
+    <div class="container-fluid">
+
+        <div class="row mt-3">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Network Create</div>
+                        <hr>
+                        <form method="POST" action="/myadmin/network_edit/{{network.id}}/">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="input-1">Name</label>
+                                <input type="text" class="form-control" value="{{network.type}}" name="type" id="input-1" placeholder="Enter Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-1">QR Code</label>
+                                <input type="file" class="form-control" name="qrcode" id="input-1" >
+                            </div>
+                            <div class="form-group">
+                                <label for="input-1">Link Name</label>
+                                <input type="text" class="form-control" value="{{network.link_name}}" name="link_name" id="input-1" placeholder="Enter Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-1">Link Address</label>
+                                <input type="text" class="form-control" value="{{network.link_address}}" name="link_address" id="input-1" placeholder="Enter Your Name">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i>
+                                    Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

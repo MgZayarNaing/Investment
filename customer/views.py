@@ -17,7 +17,20 @@ def HomePage(request):
     return render(request,'home.html',{"herosection":herosection})
 
 def Withdraw(request):
-    return render(request,'withdraw.html')
+    if request.method == "GET":
+        coin_type = CoinTypeModel.objects.all()
+        network = NetworkModel.objects.all()
+        return render(request, 'withdraw.html', {"coin_type": coin_type, "network": network})
+
+    if request.method == "POST":
+        withdraw = WithdrawModel.objects.create(
+            customer_id = request.user.id,
+            coin_type_id=request.POST.get('coin_type'),
+            network_type_id=request.POST.get('network'),
+            quantity=request.POST.get('quantity'),
+            time=datetime.now(),
+        )
+        return redirect('/')
 
 def Deposit(request):
     if request.method == "GET":
@@ -34,9 +47,7 @@ def Deposit(request):
             screenshot=request.FILES.get('screenshot'),
             time=datetime.now(),
         )
-        
         return redirect('/')
-    
     
 def GetQRLink(request):
     option_id = request.GET.get('option_id')

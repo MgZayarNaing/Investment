@@ -1,0 +1,175 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .pimg {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+    }
+
+    /*   thead tr th{
+      cursor: pointer;
+    }*/
+
+
+    table {
+        width: 100%;
+    }
+
+    td img {
+        width: 36px;
+        height: 36px;
+        margin-right: .5rem;
+        border-radius: 50%;
+
+        vertical-align: middle;
+    }
+
+    table,
+    th,
+    td {
+        border-collapse: collapse;
+        padding: 1rem;
+        text-align: left;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: #01010a;
+        cursor: pointer;
+    }
+
+    tbody tr {
+        --delay: .1s;
+        transition: .5s ease-in-out var(--delay);
+    }
+
+    tbody tr.hide {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    tbody tr:hover {
+        background-color: #fff6 !important;
+    }
+
+    tbody tr td,
+    tbody tr td p,
+    tbody tr td img {
+        transition: .2s ease-in-out;
+    }
+
+    tbody tr.hide td,
+    tbody tr.hide td p {
+        padding: 0;
+        font: 0 / 0 sans-serif;
+        transition: .2s ease-in-out .5s;
+    }
+
+    tbody tr.hide td img {
+        width: 0;
+        height: 0;
+        transition: .2s ease-in-out .5s;
+    }
+
+    .status {
+        padding: .4rem 0;
+        border-radius: 2rem;
+        text-align: center;
+    }
+
+    @media (max-width:1000px) {
+        td:not(:first-of-type) {
+            min-width: 12.1rem;
+        }
+    }
+
+    thead th span.icon-arrow {
+        display: inline-block;
+        width: 1.3rem;
+        height: 1.3rem;
+        border-radius: 50%;
+        border: 1.4px solid transparent;
+
+        text-align: center;
+        font-size: 1rem;
+
+        margin-left: .5rem;
+        transition: .2s ease-in-out;
+    }
+
+    thead th:hover span.icon-arrow {
+        border: 1.4px solid #6c00bd;
+    }
+
+    thead th.active span.icon-arrow {
+        background-color: #6c00bd;
+        color: #fff;
+    }
+
+    thead th.asc span.icon-arrow {
+        transform: rotate(180deg);
+    }
+
+    thead th:hover {
+        color: #6c00bd;
+    }
+
+    thead th.active {
+        color: #6c00bd;
+    }
+</style>
+
+<!-- withdraw -->
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name<span class="icon-arrow">&UpArrow;</span></th>
+          <th scope="col">Email<span class="icon-arrow">&UpArrow;</span></th>
+          <th scope="col">Quantity<span class="icon-arrow">&UpArrow;</span></th>
+          <th scope="col">Status<span class="icon-arrow">&UpArrow;</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for w in withdraw %}
+        {% if w.status == False %}
+          <tr>
+            <td>{{w.customer.name}}</td>
+          </tr>
+          <tr>
+            <td>{{w.customer.email}}</td>
+          </tr>
+          <tr>
+            <td>{{w.quantity}}</td>
+          </tr>
+          <tr>
+            
+            <td>
+              <form method="POST" action ="/myadmin/approve_withdraw/{{w.id}}/" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if w.status == False %}
+                <button type="submit">Approve</button>
+                {% else %}
+                <button type="button">Approved</button>
+                {% endif %}
+              </form>
+
+            </td>
+            
+          </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- withdraw -->
+
+{% endblock %}

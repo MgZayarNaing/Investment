@@ -1,0 +1,179 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .pimg {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+    }
+
+    /*   thead tr th{
+      cursor: pointer;
+    }*/
+
+
+    table {
+        width: 100%;
+    }
+
+    td img {
+        width: 36px;
+        height: 36px;
+        margin-right: .5rem;
+        border-radius: 50%;
+
+        vertical-align: middle;
+    }
+
+    table,
+    th,
+    td {
+        border-collapse: collapse;
+        padding: 1rem;
+        text-align: left;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: #01010a;
+        cursor: pointer;
+    }
+
+    tbody tr {
+        --delay: .1s;
+        transition: .5s ease-in-out var(--delay);
+    }
+
+    tbody tr.hide {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    tbody tr:hover {
+        background-color: #fff6 !important;
+    }
+
+    tbody tr td,
+    tbody tr td p,
+    tbody tr td img {
+        transition: .2s ease-in-out;
+    }
+
+    tbody tr.hide td,
+    tbody tr.hide td p {
+        padding: 0;
+        font: 0 / 0 sans-serif;
+        transition: .2s ease-in-out .5s;
+    }
+
+    tbody tr.hide td img {
+        width: 0;
+        height: 0;
+        transition: .2s ease-in-out .5s;
+    }
+
+    .status {
+        padding: .4rem 0;
+        border-radius: 2rem;
+        text-align: center;
+    }
+
+    @media (max-width:1000px) {
+        td:not(:first-of-type) {
+            min-width: 12.1rem;
+        }
+    }
+
+    thead th span.icon-arrow {
+        display: inline-block;
+        width: 1.3rem;
+        height: 1.3rem;
+        border-radius: 50%;
+        border: 1.4px solid transparent;
+
+        text-align: center;
+        font-size: 1rem;
+
+        margin-left: .5rem;
+        transition: .2s ease-in-out;
+    }
+
+    thead th:hover span.icon-arrow {
+        border: 1.4px solid #6c00bd;
+    }
+
+    thead th.active span.icon-arrow {
+        background-color: #6c00bd;
+        color: #fff;
+    }
+
+    thead th.asc span.icon-arrow {
+        transform: rotate(180deg);
+    }
+
+    thead th:hover {
+        color: #6c00bd;
+    }
+
+    thead th.active {
+        color: #6c00bd;
+    }
+</style>
+
+<div class="table-responsive">
+    <a href="/myadmin/coin_type_add/"><i class="fas fa-plus" style="margin-left:1rem"></i> Add Coin Type</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID<span class="icon-arrow">&UpArrow;</span></th>
+                <th scope="col">Type<span class="icon-arrow">&UpArrow;</span></th>
+                <th scope="col">Link Name<span class="icon-arrow">&UpArrow;</span></th>
+                <th scope="col">Link Address<span class="icon-arrow">&UpArrow;</span></th>
+                <th scope="col">Action<span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in network %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{n.type}}</td>
+                <td>{{n.link_name}}</td>
+                <td>{{n.link_address}}</td>
+                <td>
+                    <a href="/myadmin/network_edit/{{n.id}}/">Edit</a>
+                    <a href="/myadmin/network_delete/{{n.id}}/">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
+
+{% endblock %}

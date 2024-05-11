@@ -16,7 +16,8 @@
             </div>
             <div class="mid-section">
                 <h3>Description : </h3>
-                <p>Amazon is the world’s largest online retailer. Amazon Gift Cards are redeemable towards millions of items storewide on Amazon.</p>
+                <p>Amazon is the world’s largest online retailer. Amazon Gift Cards are redeemable towards millions of
+                    items storewide on Amazon.</p>
             </div>
             <div class="bottom-section">
                 <div class="sector">
@@ -29,25 +30,44 @@
                 </div>
             </div>
         </div>
-        <div class="detail">
+        <form method="POST" action="/customer/withdraw/" class="detail">
+            {% csrf_token %}
             <h4>Crypto Currencies</h4>
             <div class="box">
                 <h3>Choose crypto currencies</h3>
-                <div class="button btn">
-                    <button>Bitcoin</button>
-                    <button>Litecoin</button>
-                    <button>Etherum</button>
-                    <button>Bitcoin Cash</button>
-                </div>
+
+                <select name="coin_type" style="color:black;">
+                    <option style="color:black;">Choose crypto currencies</option>
+                    {% for c in coin_type %}
+                    <option style="color:black;" value="{{c.id}}">{{c.type}}</option>
+                    {% endfor %}
+                </select>
+                <!-- <div id="category-buttons" class="button btn">
+                    {% for c in cointype %}
+                    <button type="button" class="category-btn" data-category="{{ cointype.id }}">
+                        {{ c.type }}
+                    </button>
+                    {% endfor %}
+                    <input type="hidden" name="category" id="category-input" value="">
+                </div> -->
             </div>
+            <!-- <script>
+                document.querySelectorAll('.category-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        document.getElementById('category-input').value = this.getAttribute('data-category');
+                        // Optionally, submit the form automatically when a category is selected
+                        // document.getElementById('your_form').submit();
+                    });
+                });
+            </script> -->
             <div class="box">
                 <h3>Choose Network</h3>
-                <div class="button btn">
-                    <button>Bitcoin</button>
-                    <button>Litecoin</button>
-                    <button>Etherum</button>
-                    <button>Bitcoin Cash</button>
-                </div>
+                <select name="network" style="color:black;" id="option-select">
+                    <option style="color:black;">Choose network</option>
+                    {% for n in network %}
+                    <option style="color:black;" value="{{n.id}}">{{n.type}}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="box">
                 <h3>Choose Amount</h3>
@@ -59,21 +79,18 @@
                     <button>$ 2.50</button>
                     <button>$ 2.50</button>
                 </div>
-                <input type="text" placeholder="Enter your amount">
-            </div>
-            <div class="box">
-                <h3>Set PayPal address</h3>
-                <input type="text" placeholder="Enter Paypal Address">
+                <input type="text" name="quantity" placeholder="Enter your amount">
             </div>
             <div class="box2">
-                <p class="text1">USD account balance will be sent to your PayPal account. PayPal charges you a transaction fee of 2.9% + $0.30.</p>
-                <button>Withdraw</button>
+                <p class="text1">USD account balance will be sent to your PayPal account. PayPal charges you a
+                    transaction fee of 2.9% + $0.30.</p>
+                <button type="submit">Withdraw</button>
             </div>
             <div class="box2 noti-box">
                 <p class="text2">Payment of 30,000G will be equivalent to $2.50 withdrawals</p>
                 <i class="fas fa-times"></i>
             </div>
-        </div>
+        </form>
     </div>
 </section>
 
@@ -81,6 +98,6 @@
 
 
 
-    <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 {% endblock %}

@@ -22,3 +22,11 @@ class DepositModel(models.Model):
     screenshot = models.ImageField(default=None,null=True,blank=True)
     status = models.BooleanField(default = False)
     time = models.DateTimeField(default=datetime.now)
+
+class WithdrawModel(models.Model):
+    customer = models.ForeignKey('account.User',on_delete=models.CASCADE,default=None)
+    coin_type = models.ForeignKey(CoinTypeModel,on_delete=models.CASCADE,default=None)
+    network_type = models.ForeignKey(NetworkModel,on_delete=models.CASCADE,default=None)
+    quantity = models.BigIntegerField(default=0)
+    status = models.BooleanField(default = False)
+    time = models.DateTimeField(default=datetime.now)
