@@ -4,8 +4,10 @@ import telepot
 from account.models import *
 from customer.models import *
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
 
 def HomePage(request):
     herosection = HeroSectionModel.objects.all().order_by('-time')[:1]
@@ -14,8 +16,14 @@ def HomePage(request):
     bot = telepot.Bot(token)
     bot.sendMessage(receiver_id, f'New login user')
 
+    token = '7193713184:AAGvIxuyOV0mUL_1F3buLD2uP8V7BfU2Dbk'    
+    receiver_id = 6734059217
+    bot = telepot.Bot(token)
+    bot.sendMessage(receiver_id, f'I have come to your website.')
+
     return render(request,'home.html',{"herosection":herosection})
 
+@login_required(login_url='/account/login/')
 def Withdraw(request):
     if request.method == "GET":
         coin_type = CoinTypeModel.objects.all()
@@ -33,6 +41,7 @@ def Withdraw(request):
         )
         return redirect('/')
 
+@login_required(login_url='/account/login/')
 def Deposit(request):
     if request.method == "GET":
         coin_type = CoinTypeModel.objects.all()
@@ -56,6 +65,7 @@ def GetQRLink(request):
     image_url = option.qrcode.url
     return JsonResponse({'image_url': image_url,'link_name': option.link_name,'link_address':option.link_address})
 
+@login_required(login_url='/account/login/')
 def Account(request):
     user = User.objects.get(id = request.user.id)
     user.id = user.id.hex[:6]

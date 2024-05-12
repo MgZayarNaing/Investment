@@ -25,8 +25,12 @@ def LogIn(request):
             user = User.objects.get(email=username)
             if check_password(password, user.password):
                 login(request, user)
-                messages.success(request, "You are now logged in as "+ username)
-                return redirect('/chat-admin/')
+                if user.role == "admin":
+                    messages.success(request, "You are now logged in as "+ username)
+                    return redirect('/myadmin/dashboard/')
+                else:
+                    messages.success(request, "You are now logged in as "+ username)
+                    return redirect('/')
             else:
                 messages.error(request, " Password is incorrect!")
                 return render(request, 'login.html')

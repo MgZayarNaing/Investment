@@ -142,13 +142,20 @@
                         <i class="zmdi zmdi-face"></i> <span>Profile</span>
                     </a>
                 </li>
-
+                {% if user.is_authenticated %}
                 <li>
-                    <a href="login.html" target="_blank">
+                    <a href="/account/logout/" target="_blank">
+                        <i class="zmdi zmdi-lock"></i> <span>Logout</span>
+                    </a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/account/login/" target="_blank">
                         <i class="zmdi zmdi-lock"></i> <span>Login</span>
                     </a>
                 </li>
-
+                
+                {% endif %}
                 <li>
                     <a href="register.html" target="_blank">
                         <i class="zmdi zmdi-account-circle"></i> <span>Registration</span>

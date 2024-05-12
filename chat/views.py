@@ -30,7 +30,7 @@ def chat_room_list(request):
         'users': users
     })
 
-
+@login_required(login_url='/account/login/')
 def room(request, uuid):
     room = Room.objects.get(uuid=uuid)
 
@@ -43,7 +43,7 @@ def room(request, uuid):
         'room': room
     })
 
-
+@login_required(login_url='/account/login/')
 def delete_room(request, uuid):
     if request.user.has_perm('room.delete_room'):
         room = Room.objects.get(uuid=uuid)
