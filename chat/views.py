@@ -21,11 +21,11 @@ def create_room(request, uuid):
 
     return JsonResponse({'message': 'room created'})
 
-def admin(request):
+def chat_room_list(request):
     rooms = Room.objects.all()
     users = User.objects.filter(is_staff=True)
 
-    return render(request, 'chat/admin.html', {
+    return render(request, 'chat_room_list.html', {
         'rooms': rooms,
         'users': users
     })
@@ -51,8 +51,8 @@ def delete_room(request, uuid):
                 
         messages.success(request, 'The room was deleted!')
 
-        return redirect('/chat-admin/')
+        return redirect('/chat/chat-room-list/')
     else:
         messages.error(request, 'You don\'t have access to delete rooms!')
 
-        return redirect('/chat-admin/')
+        return redirect('/chat/chat-room-list/')

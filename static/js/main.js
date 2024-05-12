@@ -74,40 +74,40 @@ function onChatMessage(data) {
         if (tmpInfo) {
             tmpInfo.remove()
         }
-        
+
         if (data.agent) {
-            chatLogElement.innerHTML +=`
-                                        <div style="display: flex;margin-top: 0.5rem; margin-left: 0.875rem; width: 100%;  max-width: 28rem;">
-                                            <div style="border-radius: 50%; width: 3rem; height: 3rem;line-height:3rem; text-align: center; background-color: #D1D5DB;color:#000; ">
-                                                ${data.initials}
+            chatLogElement.innerHTML += `
+                                        <div style="display: flex;margin-top: 0.5rem; width: 100%;justify-content:flex-start;  max-width: 25rem;gap:1rem;flex-direction:column">
+                                                                        
+                                            <div style="display:flex;gap:1rem;justify-content:left;align-items:center;">
+                                                <p style="color:#fff;background:#000;border-radius:50%;padding:1rem;"> ${data.initials}</p>
+                                                <p style="line-height:1rem;max-width:15rem;padding:1rem;background:skyblue;border-top-right-radius:1rem;border-bottom-right-radius:1rem;border-bottom-left-radius:1rem;text-transform:none;font-size:.9rem;">${data.message}</p>
                                             </div>
-                                            <div>
-                                                <div style="padding: 0.75rem; border-top-left-radius: 0.5rem;border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; background-color: #D1D5DB; margin-left:1rem;margin-bottom:1rem;">
-                                                    <p style="font-size:1.4rem;line-height:1.75rem;color:#000; ">${data.message}</p>
-                                                </div>
-                                                <span style="font-size: 1rem;color:var(--text-color1);margin-left:1rem;margin-top:1rem; ">${data.created_at} ago</span>
+                                            <div style="display:flex;gap:1rem;justify-content:space-between;align-items:center;">
+                                                <span style="color:#000000;font-size:.7rem;padding-left:4rem;">${data.created_at} ago</span>
                                             </div>
+
                                         </div>
                                         `
         } else {
             chatLogElement.innerHTML += `
-                                        <div style="display: flex;margin-top: 0.5rem; margin-left: 0.875rem; width: 100%;  max-width: 28rem; justify-content:flex-end;">
+                                        <div style="display: flex;margin-top: 0.5rem; width: 100%;  max-width: 25rem; justify-content:flex-end;gap:.5rem;flex-direction:column">
                                         
-                                            <div>
-                                                <div style="padding: 0.75rem; border-top-left-radius: 0.5rem;border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; background-color: #93C5FD;margin-right:1rem;margin-bottom:1rem;">
-                                                    <p style="font-size:1.4rem;line-height:1.75rem;color:#000; ">${data.message}</p>
-                                                </div>
-                                                <span style="font-size:1rem;color:var(--text-color-1);margin-left:1rem;margin-top:1rem; ">${data.created_at} ago</span>
+                                            <div style="display:flex;gap:1rem;justify-content:right;align-items:center;">
+                                                <p style="line-height:1rem;max-width:15rem;padding:1rem;background:skyblue;border-top-left-radius:1rem;border-bottom-right-radius:1rem;border-bottom-left-radius:1rem;text-transform:none;font-size:.9rem;">${data.message}</p>
+                                                <p style="color:#fff;background:#000;border-radius:50%;padding:1rem;"> ${data.initials}</p>
                                             </div>
-                                            <div style="border-radius: 50%; width: 3rem; height: 3rem;line-height:3rem; text-align: center; background-color: #D1D5DB;color:#000; ">
-                                                ${data.initials}
+                                            <div style="display:flex;gap:.5rem;justify-content:right;align-items:center;">
+                                               
+                                                <span style="color:#000000;font-size:.7rem;padding-right:4rem;">${data.created_at} ago</span>
+                                                
                                             </div>
 
                                         </div>
                                         `
         }
     } else if (data.type == 'users_update') {
-        chatLogElement.innerHTML += '<p class="mt-2">The admin/agent has joined the chat!'
+        chatLogElement.innerHTML += '<p style="font-size:.8rem;color:#000; text-transform:none;margin:1rem 0;">The admin/agent has joined the chat!'
     } else if (data.type == 'writing_active') {
         if (data.agent) {
             let tmpInfo = document.querySelector('.tmp-info')
@@ -117,17 +117,15 @@ function onChatMessage(data) {
             }
 
             chatLogElement.innerHTML += `
-            <div class="tmp-info" style="display: flex;margin-top: 0.5rem; margin-left: 0.875rem; width: 100%;  max-width: 28rem;">
-            <div style="border-radius: 50%; width: 3rem; height: 3rem;line-height:3rem; text-align: center; background-color: #D1D5DB;color:#000; ">
-                ${data.initials}
-            </div>
-            <div>
-                <div style="padding: 0.75rem; border-top-left-radius: 0.5rem;border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; background-color: #D1D5DB; margin-left:1rem;margin-bottom:1rem;">
-                    <p style="font-size:1.4rem;line-height:1.75rem;color:#000; ">The admin/replier is writing a message</p>
-                </div>
-            </div>
-        </div>
-            `
+                                        <div style="display: flex;margin-top: 0.5rem; width: 100%;justify-content:flex-start;  max-width: 25rem;gap:1rem;flex-direction:column">
+                                                                        
+                                            <div style="display:flex;gap:1rem;justify-content:left;align-items:center;">
+                                                <p style="color:#fff;background:#000;border-radius:50%;padding:1rem;"> ${data.initials}</p>
+                                                <p style="line-height:1rem;max-width:15rem;padding:1rem;background:gray;border-top-right-radius:1rem;border-bottom-right-radius:1rem;border-bottom-left-radius:1rem;text-transform:none;font-size:.9rem;">The admin/replier is writing a message.</p>
+                                            </div>
+
+                                        </div>
+                                        `
         }
     }
 
@@ -147,39 +145,39 @@ async function joinChatRoom() {
     data.append('name', chatName)
     data.append('url', chatWindowUrl)
 
-    await fetch(`/api/create-room/${chatRoomUuid}/`, {
+    await fetch(`/chat/api/create-room/${chatRoomUuid}/`, {
         method: 'POST',
         headers: {
             'X-CSRFToken': getCookie('csrftoken')
         },
         body: data
     })
-    .then(function(res) {
-        return res.json()
-    })
-    .then(function(data) {
-        console.log('data', data)
-    })
+        .then(function (res) {
+            return res.json()
+        })
+        .then(function (data) {
+            console.log('data', data)
+        })
 
 
     chatSocket = new WebSocket(`ws://${window.location.host}/ws/${chatRoomUuid}/`)
 
 
-    chatSocket.onmessage = function(e) {
+    chatSocket.onmessage = function (e) {
         console.log('onMessage')
 
         onChatMessage(JSON.parse(e.data))
     }
 
 
-    chatSocket.onopen = function(e) {
+    chatSocket.onopen = function (e) {
         console.log('onOpen - chat socket was opened')
 
         scrollToBottom()
     }
 
 
-    chatSocket.onclose = function(e) {
+    chatSocket.onclose = function (e) {
 
         console.log('onClose - chat socket was closed')
     }
@@ -190,7 +188,7 @@ async function joinChatRoom() {
  * Event listeners
  */
 
-chatOpenElement.onclick = function(e) {
+chatOpenElement.onclick = function (e) {
     e.preventDefault()
 
     chatIconElement.classList.add('hidden')
@@ -200,7 +198,7 @@ chatOpenElement.onclick = function(e) {
 }
 
 
-chatJoinElement.onclick = function(e) {
+chatJoinElement.onclick = function (e) {
     e.preventDefault()
 
     chatWelcomeElement.classList.add('hidden')
@@ -212,7 +210,7 @@ chatJoinElement.onclick = function(e) {
 }
 
 
-chatSubmitElement.onclick = function(e) {
+chatSubmitElement.onclick = function (e) {
     e.preventDefault()
 
     sendMessage()
@@ -221,14 +219,14 @@ chatSubmitElement.onclick = function(e) {
 }
 
 
-chatInputElement.onkeyup = function(e) {
+chatInputElement.onkeyup = function (e) {
     if (e.keyCode == 13) {
         sendMessage()
     }
 }
 
 
-chatInputElement.onfocus = function(e) {
+chatInputElement.onfocus = function (e) {
     chatSocket.send(JSON.stringify({
         'type': 'update',
         'message': 'writing_active',

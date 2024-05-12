@@ -124,54 +124,40 @@
     }
 </style>
 
+  <!-- withdraw_history -->
 <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Name<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Account No.<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">User Code<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Phone<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Email<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Coin Type<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Network Type<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Quantity<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Screenshot<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Status<span class="icon-arrow">&UpArrow;</span></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for d in deposit %}
-            <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{d.customer.name}}</td>
-                <td>{{d.customer.account_number}}</td>
-                <td>{{d.customer.id}}</td>
-                <td>{{d.customer.phone}}</td>
-                <td>{{d.customer.email}}</td>
-                <td>{{d.coin_type.type}}</td>
-                <td>{{d.network_type.type}}</td>
-                <td>{{d.quantity}}</td>
-                <td><img src="/media/{{d.screenshot}}" alt="{{d.customer.name}}" style="width:100px;height:100px;"/></td>
-                <td>
-                    <form method="POST" action="/myadmin/approve_deposit/{{d.id}}/" enctype="multipart/form-data">
-                        {% csrf_token %}
-
-                        {% if d.status == False %}
-                        <button type="submit">Approve</button>
-                        {% else %}
-                        <button type="button">Approved</button>
-                        {% endif %}
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">ID<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Name<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Account No.<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">User Code<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Phone<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Email<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Coin Type<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Network Type<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Quantity<span class="icon-arrow">&UpArrow;</span></th>
+              <th scope="col">Link Address<span class="icon-arrow">&UpArrow;</span></th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for d in withdraw_history %}
+          <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{d.withdraw.customer.name}}</td>
+              <td>{{d.withdraw.customer.account_number}}</td>
+              <td>{{d.withdraw.customer.id}}</td>
+              <td>{{d.withdraw.customer.phone}}</td>
+              <td>{{d.withdraw.customer.email}}</td>
+              <td>{{d.withdraw.coin_type.type}}</td>
+              <td>{{d.withdraw.network_type.type}}</td>
+              <td>{{d.withdraw.quantity}}</td>
+              <td>{{d.withdraw.user_link_address}}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
 </div>
-
-
-<!-- deposit -->
 
 {% endblock %}

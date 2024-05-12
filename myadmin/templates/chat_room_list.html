@@ -1,7 +1,7 @@
-{% extends 'core/base.html' %}
+{% extends 'admin_base.html' %}
 
 {% block content %}
-    <h1 class="text-2xl">Chat admin</h1>
+    <!-- <h1 class="text-2xl">Chat admin</h1>
 
     {% if perms.user.add_user %}
         <div class="mt-8">
@@ -31,11 +31,10 @@
         </div>
     {% endif %}
 
-    <hr class="my-6">
+    <hr class="my-6"> -->
 
-    <div class="mt-8">
-        <h2 class="mb-4 text-lg">Rooms</h2>
-
+    <div style="margin-top: 2rem;">
+        <h2 style="margin-bottom: 1rem;  font-size: 1.125rem; line-height: 1.75rem; ">Rooms</h2>
         {% include 'chat/partials/room_list.html' %}
     </div>
 {% endblock %}

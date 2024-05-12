@@ -40,6 +40,7 @@
 
         gtag('config', 'G-CQ8E501Q2P');
     </script>
+   
 </head>
 
 <body class="bg-theme bg-theme1">
@@ -59,7 +60,19 @@
                 <li class="sidebar-header">MAIN NAVIGATION</li>
                 <li>
                     <a href="/myadmin/dashboard/">
-                        <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
+                        <i class="zmdi zmdi-view-dashboard"></i> <span>DASHBOARD</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/chat/chat-room-list/">
+                        <i class="zmdi zmdi-invert-colors"></i> <span>CHAT ROOM</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/myadmin/herosection/">
+                        <i class="zmdi zmdi-view-dashboard"></i> <span>HEROSECTION</span>
                     </a>
                 </li>
 
@@ -88,8 +101,20 @@
                 </li>
 
                 <li>
+                    <a href="/myadmin/deposit_history/">
+                        <i class="zmdi zmdi-invert-colors"></i> <span>DEPOSIT HISTORY</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="/myadmin/withdraw_list/">
                         <i class="zmdi zmdi-invert-colors"></i> <span>WITHDRAW</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/myadmin/withdraw_history/">
+                        <i class="zmdi zmdi-invert-colors"></i> <span>WITHDRAW HISTORY</span>
                     </a>
                 </li>
 
@@ -233,7 +258,8 @@
 
     <!-- Index js -->
     <script src="{% static 'assets/js/index.js' %}"></script>
-
+    {% block scripts %}
+    {% endblock %}
 
 </body>
 

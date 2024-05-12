@@ -37,5 +37,7 @@ urlpatterns = [
     path('network_edit/<int:n_id>/',views.NetworkEdit),
     path('network_delete/<int:n_id>/',views.NetworkDelete),
     path('deposit_list/',views.DepositList),
+    path('deposit_history/',views.DepositHistory),
     path('withdraw_list/',views.WithdrawList),
+    path('withdraw_history/',views.WithdrawHistory),
 ]

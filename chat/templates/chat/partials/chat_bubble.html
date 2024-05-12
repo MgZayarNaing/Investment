@@ -1,39 +1,141 @@
+{% load static %}
 <style>
-    .hidden{
-        display:none;
+    .hidden {
+        display: none;
     }
-    .chat{
+
+    .chat {
         max-width: 300px;
         position: fixed;
-        right:2px;
-        bottom:2px;
-        padding:4px;
-        background:#eee;
-        border:1px solid black;
-        border-radius:.5rem;
+        right: 10px;
+        bottom: 20px;
+        background: #eee;
+        border: 2px solid #BA8864;
+        border-radius: .5rem;
+        padding: 4px;
+    }
+
+    .chat_icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        border: none;
+        outline: none;
+        border-radius: 50%;
+    }
+
+    .chat_icon i {
+        color: #BA8864;
+        font-size: 3rem;
+    }
+
+    .chat_input {
+        padding: 0.5rem 1.5rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+        width: 95%;
+        text-transform: none;
+        color: #000000;
+        background-color: #F3F4F6;
+    }
+
+    .chat_join_btn {
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.75rem;
+        color: #ffffff;
+        background: #BA8864;
+        border: none;
+        outline: none;
+        margin-bottom: 1rem;
+        margin-left: .5rem;
+    }
+
+    .chat-container {
+        background-color: #BA8864;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0 1rem 1rem;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: .5rem;
+    }
+
+    .chat-container .sector {
+        display: flex;
+        align-items: center;
+    }
+
+    .chat-container .sector h1 {
+        text-transform: none;
+        font-size: 1.7rem;
+    }
+
+    .chat-container .sector img {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .chat-container p {
+        text-transform: none;
+    }
+
+    .chat_room {
+        overflow: scroll;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+        background-color: #F3F4F6;
+        height: 300px;
+    }
+
+    .chat_message_input {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+        width: 100%;
+        background-color: #F3F4F6;
+        color:#000000;
+    }
+
+    .chat_message_submit {
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.75rem;
+        color: #ffffff;
+        background:#BA8864;
+        border:none;
+        outline: none;
+        margin-bottom: 1rem;
     }
 </style>
 <div id="chat" class="chat">
     <div id="chat_icon">
-        <button id="chat_open" class="w-[50px] flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="text-rose-600">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
-            </svg>              
+        <button id="chat_open" class="chat_icon">
+            <i class="fa-solid fa-headset"></i>
         </button>
     </div>
 
     <div id="chat_welcome" class="hidden">
-        <input type="text" name="name" id="chat_name" class="w-full mb-4 py-2 px-6 rounded-xl bg-gray-100" placeholder="Your name...">
+        <div class="chat-container">
+            <div class="sector">
+                <h1>Hi there</h1>
+                <img src="{% static 'images/hand.png' %}">
+            </div>
+            <p>Need help? Search our help center for answers or start a conversation:</p>
+        </div>
 
-        <button id="chat_join" class="py-2 px-6 rounded-xl text-white bg-rose-600">Join chat</button>
+        <center><input type="text" name="name" id="chat_name" class="chat_input" placeholder="Your name..."></center>
+
+        <button id="chat_join" class="chat_join_btn">Join chat</button>
     </div>
 
     <div id="chat_room" class="hidden">
-        <div id="chat_log" class="mb-4 p-4 bg-gray-100 rounded-xl h-[300px] overflow-scroll">
-            <p>Welcome to our chat! Please type your message and wait for an agent to join...</p>
+        <div id="chat_log" class="chat_room">
+            <p style="color:#000000;text-transform: none;">Welcome to our chat! Please type your message and wait for an agent to join...</p>
         </div>
 
-        <input type="text" name="body" id="chat_message_input" class="w-full mb-4 p-4 bg-gray-100 rounded-xl" placeholder="Type your message...">
-        <button id="chat_message_submit" class="py-2 px-6 bg-rose-600 text-white rounded-xl">Send</button>
+        <input type="text" name="body" id="chat_message_input" class="chat_message_input"
+            placeholder="Type your message...">
+        <button id="chat_message_submit" class="chat_message_submit">Send</button>
     </div>
 </div>

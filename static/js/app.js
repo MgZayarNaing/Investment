@@ -1,4 +1,4 @@
-let navbar = document.querySelector(".navbar");
+let bar = document.querySelector(".navbar");
 //<i class='bx bx-x'></i>
 
 // sidebar open close js code

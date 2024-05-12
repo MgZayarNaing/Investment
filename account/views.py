@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth.hashers import check_password
 from datetime import datetime
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -60,6 +62,12 @@ def Register(request):
                     password = password,
                 )
 
+                subject = 'welcome to GFG world'
+                message = f'{user.name}, thank you'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email,]
+                send_mail( subject,message,email_from,recipient_list)
+
                 messages.success(request,"Account was created for "+name)
                 return redirect('/account/login/')
             else:
@@ -72,3 +80,33 @@ def Register(request):
 def LogOut(request):
     logout(request)
     return redirect('/account/login/')
+
+def ConfirmEmailToResetPassword(request):
+    if request.method == "GET":
+        return render(request,"confirm-email-to-reset-password.html")
+    if request.method == "POST":
+        email = request.POST.get('email')
+        if User.objects.filter(email = email).exists():
+            return redirect('/account/reset-password/' + email + '/')
+        else:
+            messages.error(request,"Email does not found!")
+            return redirect('/account/confirm-email-to-reset-password/')
+        
+def ResetPassword(request,email):
+    if request.method == "GET":
+        return render(request,"reset-password.html",{"email":email})
+    if request.method == "POST":
+        password = request.POST.get('password')
+        passwordconfirm = request.POST.get('passwordconfirm')
+        if password == passwordconfirm:
+            user = User.objects.filter(email = email).first()
+            user.set_password(passwordconfirm)
+            user.save()
+
+            return redirect('/account/reset-password-success/')
+        else:
+            messages.error(request,"Password does not match! Please check your password again!")
+            return redirect('/account/reset-password/' + email + '/')
+
+def ResetPasswordSuccess(request):
+    return render(request,"reset-password-success.html")

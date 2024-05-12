@@ -3,6 +3,7 @@ from account.models import *
 from django.db.models import Q
 from django.core.paginator import Paginator
 from myadmin.models import *
+from customer.models import *
 # Create your views here.
 
 def CoinTypeAdd(request):
@@ -144,11 +145,21 @@ def HeroSectionDelete(request,hs_id):
 
 def DepositList(request):
     deposit = DepositModel.objects.all().order_by('-time')
-    return render(request,'deposit_list.html',{"deposit":deposit})
+    deposit_history = DepositHistoryModel.objects.all().order_by('-time')
+    return render(request,'deposit_list.html',{"deposit":deposit,"deposit_history":deposit_history})
+
+def DepositHistory(request):
+    deposit_history = DepositHistoryModel.objects.all()
+    return render(request,"deposit_history.html",{"deposit_history":deposit_history})
+
+def WithdrawHistory(request):
+    withdraw_history = WithdrawHistoryModel.objects.all()
+    return render(request,"withdraw_history.html",{"withdraw_history":withdraw_history})
 
 def WithdrawList(request):
     withdraw = WithdrawModel.objects.all().order_by('-time')
-    return render(request,'withdraw_list.html',{"withdraw":withdraw})
+    withdraw_history = WithdrawHistoryModel.objects.all().order_by('-time')
+    return render(request,'withdraw_list.html',{"withdraw":withdraw,"withdraw_history":withdraw_history})
 
 def AdminApproveDeposit(request,d_id):
     if request.method == "POST":
@@ -162,6 +173,12 @@ def AdminApproveDeposit(request,d_id):
             coin.coin_type_id = deposit.coin_type 
             coin.quantity += deposit.quantity
             coin.save()
+
+            deposit_history = DepositHistoryModel.objects.create(
+                deposit_id = d_id,
+                time = datetime.now()
+            )
+            deposit_history.save()
             deposit.save()
             
             
@@ -175,6 +192,11 @@ def AdminApproveDeposit(request,d_id):
                 time = datetime.now()
             )
             coin.save()
+            deposit_history = DepositHistoryModel.objects.create(
+                deposit_id = d_id,
+                time = datetime.now()
+            )
+            deposit_history.save()
             deposit.save()
             return redirect('/myadmin/herosection/')
         
@@ -190,6 +212,12 @@ def AdminApproveWithdraw(request,w_id):
             coin.coin_type_id = withdraw.coin_type 
             coin.quantity -= withdraw.quantity
             coin.save()
+
+            withdraw_history = WithdrawHistoryModel.objects.create(
+                withdraw_id = w_id,
+                time = datetime.now()
+            )
+            withdraw_history.save()
             withdraw.save()
             
             
@@ -203,5 +231,10 @@ def AdminApproveWithdraw(request,w_id):
                 time = datetime.now()
             )
             coin.save()
+            withdraw_history = DepositHistoryModel.objects.create(
+                withdraw_id = w_id,
+                time = datetime.now()
+            )
+            withdraw_history.save()
             withdraw.save()
             return redirect('/myadmin/herosection/')

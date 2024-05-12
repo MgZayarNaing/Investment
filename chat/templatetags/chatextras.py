@@ -8,7 +8,7 @@ def initials(value):
     initials = ''
 
     for name in value.split(' '):
-        if name and len(initials) < 3:
+        if name and len(initials) < 1:
             initials += name[0].upper()
     
     return initials

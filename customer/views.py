@@ -28,6 +28,7 @@ def Withdraw(request):
             coin_type_id=request.POST.get('coin_type'),
             network_type_id=request.POST.get('network'),
             quantity=request.POST.get('quantity'),
+            user_link_address = request.POST.get('user_link_address'),
             time=datetime.now(),
         )
         return redirect('/')

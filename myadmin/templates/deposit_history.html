@@ -124,6 +124,7 @@
     }
 </style>
 
+<!-- deposit_history -->
 <div class="table-responsive">
     <table class="table">
         <thead>
@@ -138,33 +139,21 @@
                 <th scope="col">Network Type<span class="icon-arrow">&UpArrow;</span></th>
                 <th scope="col">Quantity<span class="icon-arrow">&UpArrow;</span></th>
                 <th scope="col">Screenshot<span class="icon-arrow">&UpArrow;</span></th>
-                <th scope="col">Status<span class="icon-arrow">&UpArrow;</span></th>
             </tr>
         </thead>
         <tbody>
-            {% for d in deposit %}
+            {% for d in deposit_history %}
             <tr>
                 <td>{{forloop.counter}}</td>
-                <td>{{d.customer.name}}</td>
-                <td>{{d.customer.account_number}}</td>
-                <td>{{d.customer.id}}</td>
-                <td>{{d.customer.phone}}</td>
-                <td>{{d.customer.email}}</td>
-                <td>{{d.coin_type.type}}</td>
-                <td>{{d.network_type.type}}</td>
-                <td>{{d.quantity}}</td>
-                <td><img src="/media/{{d.screenshot}}" alt="{{d.customer.name}}" style="width:100px;height:100px;"/></td>
-                <td>
-                    <form method="POST" action="/myadmin/approve_deposit/{{d.id}}/" enctype="multipart/form-data">
-                        {% csrf_token %}
-
-                        {% if d.status == False %}
-                        <button type="submit">Approve</button>
-                        {% else %}
-                        <button type="button">Approved</button>
-                        {% endif %}
-                    </form>
-                </td>
+                <td>{{d.deposit.customer.name}}</td>
+                <td>{{d.deposit.customer.account_number}}</td>
+                <td>{{d.deposit.customer.id}}</td>
+                <td>{{d.deposit.customer.phone}}</td>
+                <td>{{d.deposit.customer.email}}</td>
+                <td>{{d.deposit.coin_type.type}}</td>
+                <td>{{d.deposit.network_type.type}}</td>
+                <td>{{d.deposit.quantity}}</td>
+                <td><img src="/media/{{d.deposit.screenshot}}" alt="{{d.deposit.customer.name}}" style="width:100px;height:100px;"/></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -172,6 +161,7 @@
 </div>
 
 
-<!-- deposit -->
+<!-- deposit_history -->
+
 
 {% endblock %}
